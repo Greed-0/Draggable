@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8;">
+    <title>Sürükleme İşlemi</title>
+<style>
+    .bicimlendirme{
+        border: 2px solid black;
+        width: 250px;
+        height: 25px;
+        margin: 20px;
+        float:left;
+        padding: 20px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div>İşlem sonucu: <span id="metinalani"></span></div><br><br><br>
+
+
+<div class="bicimlendirme" ondrop="birakildi(event)" ondragover="uzerinde(event)" ondragleave="ayrildi(event)">
+    <span id="kimlik" ondragstart="basladi(event)" draggable="true">Merhaba</span>
+</div>
+
+<div class="bicimlendirme" ondrop="birakildi(event)" ondragover="uzerinde(event)" ondragleave="ayrildi(event)"></div>
+
+<script type="text/javascript" languages ="javascript">
+
+function basladi(event){
+    event.dataTransfer.setData("TasinanEleman", event.target.id);
+    document.getElementById("metinalani").innerHTML = "Sürükleme başladı";
+}
+function uzerinde(event){
+    event.preventDefault();
+    document.getElementById("metinalani").innerHTML = "Hedef üzerine gelindi";
+}
+function ayrildi(event){
+document.getElementById("metinalani").innerHTML = "Hedef üzerinden çıkıldı";
+}
+function birakildi(event){
+    event.preventDefault();
+    var veri = event.dataTransfer.getData("TasinanEleman");
+    event.target.appendChild(document.getElementById(veri));
+    document.getElementById("metinalani").innerHTML = "Eleman bırakıldı";
+}
+
+
+</script>
+</body>
+</html>
